@@ -24,6 +24,7 @@ object BerlinClock {
 
         time match {
           case `24-hour-format`(hours, minutes, seconds) =>
+
             val clock = new BerlinClock(hours.toInt, minutes.toInt, seconds.toInt)
             val panel = DigiPanel.render(clock)
             println(panel)

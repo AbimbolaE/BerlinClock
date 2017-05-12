@@ -14,13 +14,13 @@ object DigiPanel {
 
     rowOfOne(clock.seconds).mkString + newline +
       divider + newline +
-      rowOfFour("R", clock.majorHour).mkString("| ", "  |  ", " |") + newline +
+    rowOfFour("R", clock.majorHour).mkString("| ", "  |  ", " |") + newline +
       divider + newline +
-      rowOfFour("R", clock.minorHour).mkString("| ", "  |  ", " |") + newline +
+    rowOfFour("R", clock.minorHour).mkString("| ", "  |  ", " |") + newline +
       divider + newline +
-      rowOfEleven(1, clock.majorMinutes).mkString("|", "|", "|") + newline +
+    rowOfEleven(1, clock.majorMinutes).mkString("|", "|", "|") + newline +
       divider + newline +
-      rowOfFour("Y", clock.minorMinutes).mkString("| ", "  |  ", " |") + newline +
+    rowOfFour("Y", clock.minorMinutes).mkString("| ", "  |  ", " |") + newline +
       divider
   }
 
