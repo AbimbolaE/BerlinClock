@@ -15,7 +15,7 @@ case class BerlinClock private (seconds: Int, majorHour: Int, minorHour: Int, ma
 
 object BerlinClock {
 
-  val timeFormat: Regex = "([01]?[0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9])".r
+  val `24-hour-format`: Regex = "([01][0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9])".r
 
   def main(args: Array[String]): Unit = {
 
@@ -23,7 +23,10 @@ object BerlinClock {
       case Some(time) =>
 
         time match {
-          case timeFormat(hours, minutes, seconds) => ???
+          case `24-hour-format`(hours, minutes, seconds) =>
+            val clock = new BerlinClock(hours.toInt, minutes.toInt, seconds.toInt)
+            val panel = DigiPanel.render(clock)
+            println(panel)
           case _ => showErrorMessage()
         }
       case None => showInstructions()

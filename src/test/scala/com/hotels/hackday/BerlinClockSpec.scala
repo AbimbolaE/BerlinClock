@@ -12,9 +12,9 @@ import scala.io.Source
   */
 class BerlinClockSpec extends WordSpec {
 
-  val lineSeparator = sys.props("line.separator")
-
   "A Berlin Clock application" should {
+
+    val lineSeparator = sys.props("line.separator")
 
     "print instructions if the time is missing" in {
 
@@ -27,11 +27,33 @@ class BerlinClockSpec extends WordSpec {
       stream.toString should be (instructions)
     }
 
+    "print a clock panel if the time is valid and in the correct format" in {
+
+      val stream = new ByteArrayOutputStream()
+      Console.withOut(stream) {
+        BerlinClock.main(Array("17:01:21"))
+      }
+
+      val panel = Source.fromResource("17-01-21.txt").mkString + lineSeparator
+      stream.toString should be (panel)
+    }
+
+    "print an error message if the input is not a time" in {
+
+      val stream = new ByteArrayOutputStream()
+      Console.withOut(stream) {
+        BerlinClock.main(Array("not-a-time"))
+      }
+
+      val errorMessage = "Your time is not in the correct format, please correct it (HH:mm:ss)" + lineSeparator
+      stream.toString should be (errorMessage)
+    }
+
     "print an error message if the time is in the wrong format" in {
 
       val stream = new ByteArrayOutputStream()
       Console.withOut(stream) {
-        BerlinClock.main(Array("badly formatted time"))
+        BerlinClock.main(Array("1:00"))
       }
 
       val errorMessage = "Your time is not in the correct format, please correct it (HH:mm:ss)" + lineSeparator
