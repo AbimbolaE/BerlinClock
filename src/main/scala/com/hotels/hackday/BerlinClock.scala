@@ -6,6 +6,13 @@ import scala.util.matching.Regex
 /**
   * Created by Abimbola on 12/05/2017.
   */
+case class BerlinClock private (seconds: Int, majorHour: Int, minorHour: Int, majorMinutes: Int, minorMinutes: Int) {
+
+  def this(hours: Int, minutes: Int, seconds: Int) {
+    this(seconds % 2, hours / 5, hours % 5, minutes / 5, minutes % 5)
+  }
+}
+
 object BerlinClock {
 
   val timeFormat: Regex = "([01]?[0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]".r
