@@ -15,7 +15,7 @@ case class BerlinClock private (seconds: Int, majorHour: Int, minorHour: Int, ma
 
 object BerlinClock {
 
-  val timeFormat: Regex = "([01]?[0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]".r
+  val timeFormat: Regex = "([01]?[0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9])".r
 
   def main(args: Array[String]): Unit = {
 
@@ -23,7 +23,7 @@ object BerlinClock {
       case Some(time) =>
 
         time match {
-          case timeFormat(hour, minutes, seconds) => ???
+          case timeFormat(hours, minutes, seconds) => ???
           case _ => showErrorMessage()
         }
       case None => showInstructions()
